@@ -4,6 +4,9 @@ apply plugin: "io.spring.dependency-management"
 dependencies {
     compile project(":components:rest-support")
 
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "io.pivotal.spring.cloud:spring-cloud-services-starter-service-registry"
+
     compile "org.springframework.boot:spring-boot-starter-web"
 
     compile "com.zaxxer:HikariCP:$hikariVersion"
@@ -11,4 +14,10 @@ dependencies {
     compile "ch.qos.logback:logback-classic:$logbackVersion"
 
     testCompile project(":components:test-support")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "io.pivotal.spring.cloud:spring-cloud-services-dependencies:$springCloudServicesClientLibrariesVersion"
+    }
 }
